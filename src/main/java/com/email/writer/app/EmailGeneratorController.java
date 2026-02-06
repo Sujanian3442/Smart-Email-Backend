@@ -25,8 +25,16 @@ public class EmailGeneratorController {
 
     @PostMapping("/generate")
     public ResponseEntity<String> generateEmail(@RequestBody EmailRequest emailRequest) {
+        // String response = emailGeneratorService.generateEmailReply(emailRequest);
+        // return ResponseEntity.ok(response);
+        try {
         String response = emailGeneratorService.generateEmailReply(emailRequest);
         return ResponseEntity.ok(response);
+    } catch (Exception e) {
+        return ResponseEntity
+            .status(429)
+            .body("AI quota exceeded. Please try again later.");
+    }
     }
 
 }
