@@ -18,6 +18,11 @@ public class EmailGeneratorController {
 
     //@PostMapping("/generate")
     @GetMapping("/")
+    public String home() {
+        return "Smart Email Backend is running 🚀";
+    }
+    
+    @GetMapping("/")
     public ResponseEntity<String> generateEmail(@RequestBody EmailRequest emailRequest) {
         String response = emailGeneratorService.generateEmailReply(emailRequest);
         return ResponseEntity.ok(response);
